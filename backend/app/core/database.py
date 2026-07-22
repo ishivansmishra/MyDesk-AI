@@ -29,6 +29,24 @@ def _build_async_database_url() -> tuple[str, dict[str, object]]:
         query_params.pop("channel_binding")
 
     normalized_query = urlencode(query_params, doseq=True)
+
+    # Handle sqlite -> sqlite+aiosqlite and ensure correct number of slashes
+    if parsed.scheme.startswith("sqlite"):
+        # Replace scheme prefix with async driver
+        normalized = settings.database_url.replace("sqlite:", "sqlite+aiosqlite:", 1)
+        # Ensure triple slash after scheme for relative paths: sqlite+aiosqlite:///./app.db
+        if normalized.startswith("sqlite+aiosqlite:/") and not normalized.startswith("sqlite+aiosqlite:///"):
+            normalized = normalized.replace("sqlite+aiosqlite:/", "sqlite+aiosqlite:///", 1)
+        # If query params exist, attach them properly
+        if normalized_query:
+            if "?" in normalized:
+                normalized_url = normalized + "&" + normalized_query
+            else:
+                normalized_url = normalized + "?" + normalized_query
+        else:
+            normalized_url = normalized
+        return normalized_url, connect_args
+
     normalized_scheme = parsed.scheme.replace("postgresql", "postgresql+asyncpg")
     normalized_url = urlunsplit((normalized_scheme, parsed.netloc, parsed.path, normalized_query, parsed.fragment))
     return normalized_url, connect_args

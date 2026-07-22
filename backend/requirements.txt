@@ -25,3 +25,4 @@ google-auth>=2.15.0
 google-auth-oauthlib>=1.2.1
 openai>=1.54.0
 gunicorn>=21.2.0
+aiosqlite>=0.18.0
