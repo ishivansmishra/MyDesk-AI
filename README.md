@@ -1,13 +1,7 @@
 # MyDesk AI
 
-![MyDesk AI banner](./docs/assets/banner-placeholder.png)
 
 MyDesk AI — a workspace-aware personal assistant that connects your Google Workspace (Calendar & Tasks) to an LLM-driven agent for planning, scheduling, and task automation.
-
-[![CI](https://github.com/your-org/your-repo/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/your-repo/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
-<!-- Demo GIF placeholder -->
-![Demo GIF Placeholder](./docs/assets/demo-placeholder.gif)
 
 Short description: A production-minded FastAPI + Next.js reference assistant that demonstrates OAuth-based Google Workspace integrations, stateful agent workflows, and extensible tool-calling architecture.
 
