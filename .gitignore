@@ -1,0 +1,148 @@
+# -------------------------
+# MyDesk-AI (root .gitignore)
+# Generated: production-ready, well-commented
+# -------------------------
+
+## ----------------------------------------
+## Core: keep project metadata tracked
+## ----------------------------------------
+# Keep these files in the repo (don't ignore):
+# - README.md, LICENSE, .env.example, Dockerfile, docker-compose.yml
+# - migration sources: alembic/, migrations/
+# - dependency manifests/locks: requirements.txt, pyproject.toml, package.json, package-lock.json, pnpm-lock.yaml, yarn.lock
+
+## ----------------------------------------
+## Environment files (ignore secrets)
+## ----------------------------------------
+# Ignore any environment files anywhere in the repo to avoid leaking secrets
+**/.env
+**/.env.*
+*.env
+# Keep the example env file used for documentation
+!**/.env.example
+!.env.example
+
+## ----------------------------------------
+## Python artifacts
+## ----------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+## Virtual environments
+venv/
+.venv/
+
+ENV/
+env.bak/
+
+## ----------------------------------------
+## Node / Frontend
+## ----------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+
+## Frontend build / caches
+.next/
+out/
+build/
+dist/
+.vite/
+coverage/
+
+## ----------------------------------------
+## Docker
+## ----------------------------------------
+.docker/
+docker-compose.override.yml
+
+## ----------------------------------------
+## Database files
+## ----------------------------------------
+*.sqlite
+*.sqlite3
+
+## ----------------------------------------
+## Logs and runtime files
+## ----------------------------------------
+*.log
+logs/
+*.pid
+*.seed
+
+## ----------------------------------------
+## Secrets / credentials
+## ----------------------------------------
+*.pem
+*.key
+*.crt
+credentials.json
+token.json
+client_secret*.json
+service-account*.json
+
+## ----------------------------------------
+## AI / ML artifacts
+## ----------------------------------------
+models/
+checkpoints/
+wandb/
+mlruns/
+cache/
+.cache/
+huggingface/
+datasets/
+
+## ----------------------------------------
+## IDEs and editors
+## ----------------------------------------
+.vscode/
+.idea/
+*.iml
+# JetBrains caches
+.idea/*
+!/.idea/inspectionProfiles
+
+## ----------------------------------------
+## OS generated files
+## ----------------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+## ----------------------------------------
+## Temporary and backup files
+## ----------------------------------------
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+## ----------------------------------------
+## Testing artifacts
+## ----------------------------------------
+.pytest_cache/
+test-reports/
+
+## ----------------------------------------
+## Misc
+## ----------------------------------------
+# Ignore local env files in editors/CI but keep the documented examples
+.vagrant/
+/.cache/

@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install backend deps
+        run: |
+          cd backend
+          pip install -r requirements.txt
+      - name: Security scan (pip-audit)
+        run: |
+          python -m pip install pip-audit
+          pip-audit --progress spinner || true
+      - name: Run backend tests
+        run: |
+          cd backend
+          pytest -q
+      - name: Build Docker images
+        run: |
+          docker build -t mydesk-backend .
+          docker build -t mydesk-frontend ./frontend
+      - name: Frontend security audit
+        working-directory: frontend
+        run: |
+          npm ci
+          npm audit --audit-level=moderate || true
