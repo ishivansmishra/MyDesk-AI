@@ -99,7 +99,7 @@ service-account*.json
 ## ----------------------------------------
 ## AI / ML artifacts
 ## ----------------------------------------
-models/
+
 checkpoints/
 wandb/
 mlruns/
